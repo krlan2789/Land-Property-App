@@ -28,5 +28,11 @@
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>id</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 </dict>
 </plist>

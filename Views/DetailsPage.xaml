@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Land_Property_App.Views.DetailsPage"
-             Title="DetailsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:strings="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	x:Class="Land_Property_App.Views.DetailsPage"
+	NavigationPage.HasNavigationBar="False">
+
+	<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+		<Image Aspect="AspectFill" Source="{Binding SelectedProperty.DefaultImage}" Margin="0,0,0,168" />
+
+		<Grid RowDefinitions="*, Auto" BackgroundColor="Transparent">
+			<VerticalStackLayout x:Name="sideView">
+				<Grid x:Name="imagesView" WidthRequest="80" VerticalOptions="Start" HorizontalOptions="End" Margin="0,64,32,0" BackgroundColor="Transparent" >
+					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.92" />
+					<CollectionView Margin="0,10" ItemsSource="{Binding PropertyImages}">
+						<CollectionView.ItemTemplate>
+							<DataTemplate>
+								<Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" StrokeShape="RoundRectangle 32" StrokeThickness="0" Margin="0,0,0,8">
+									<Image Aspect="AspectFill" Source="{Binding .}" WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" />
+								</Border>
+							</DataTemplate>
+						</CollectionView.ItemTemplate>
+
+						<CollectionView.Footer>
+							<Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" StrokeShape="RoundRectangle 32" StrokeThickness="0" BackgroundColor="{StaticResource Primary}" >
+								<Label Text="{Binding MoreItems, StringFormat='+{0}'}" TextColor="{StaticResource Tertiary}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+							</Border>
+						</CollectionView.Footer>
+					</CollectionView>
+				</Grid>
+
+				<Grid x:Name="detailsBtn" HorizontalOptions="End" Margin="0,64,32,0" BackgroundColor="Transparent">
+					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.64" HeightRequest="80" WidthRequest="80" />
+					<VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+						<Image Source="expand.png" WidthRequest="12" />
+						<Label Text="{x:Static strings:AppResources.MoreDetailsButtonLabel}" FontSize="16" Opacity="0.64" />
+					</VerticalStackLayout>
+				</Grid>
+			</VerticalStackLayout>
+			
+			<Grid x:Name="popView" Grid.Row="1" BackgroundColor="Transparent">
+				<Border StrokeShape="RoundRectangle 32,32,0,0" StrokeThickness="0" Opacity="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" />
+				<Grid Padding="32" BackgroundColor="Transparent">
+					<VerticalStackLayout>
+						<VerticalStackLayout x:Name="addressView">
+							<Label Text="{Binding SelectedProperty.Address}" FontSize="20" Opacity="0.75" />
+							<Label Text="{Binding SelectedProperty.Price, StringFormat='IDR {0:###,###,###}'}" FontSize="28" FontAttributes="Bold" />
+						</VerticalStackLayout>
+
+						<Button x:Name="buyBtn" Text="{x:Static strings:AppResources.BuyButtonLabel}" FontAttributes="Bold" FontSize="20" HeightRequest="48" WidthRequest="192" HorizontalOptions="Start" Margin="0,20,0,0" />
+					</VerticalStackLayout>
+
+					<ImageButton BackgroundColor="Transparent" Source="close.png" WidthRequest="48" HeightRequest="48" HorizontalOptions="End" VerticalOptions="End" Command="{Binding OnCloseCommand}">
+						<ImageButton.Behaviors>
+							<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
+						</ImageButton.Behaviors>
+					</ImageButton>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+	
 </ContentPage>

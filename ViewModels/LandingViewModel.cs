@@ -1,4 +1,5 @@
 ﻿using Land_Property_App.Models;
+using Land_Property_App.Resources.Strings;
 using Land_Property_App.Views;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,13 @@ namespace Land_Property_App.ViewModels
 {
     public class LandingViewModel : BaseViewModel
     {
-        public List<string> Sections => ["Trending", "Popular", "Buy", "Rent"];
+        public List<string> Sections => [
+            AppResources.TagTrendingLabel,
+            AppResources.TagPopularLabel,
+            AppResources.TagSaleLabel,
+            AppResources.TagRentLabel
+        ];
+
         public List<Property> Properties => PropertyRepo.AllPropreties;
 
         public Property? SelectedProperty { get; set; }

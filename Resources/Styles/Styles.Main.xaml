@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+	<Style TargetType="Label">
+		<Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Tertiary}}" />
+	</Style>
+
+	<Style TargetType="Grid">
+		<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" />
+		<Setter Property="VisualStateManager.VisualStateGroups">
+			<VisualStateGroupList>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="Selected">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="Transparent" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+		</Setter>
+	</Style>
+
+	<Style TargetType="Border">
+		<Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
+	</Style>
+
+	<Style TargetType="Button">
+		<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+		<Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+		<Setter Property="CornerRadius" Value="24" />
+	</Style>
+
+	<ControlTemplate x:Key="SectionTemplate">
+		<Border WidthRequest="96" StrokeShape="RoundRectangle 24" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
+			<Label x:Name="label" Text="{TemplateBinding Content}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroupList>
+					<VisualStateGroup x:Name="CheckedStates">
+						<VisualState x:Name="Checked">
+							<VisualState.Setters>
+								<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+								<Setter TargetName="label" Property="Label.Opacity" Value="1" />
+								<Setter TargetName="label" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+							</VisualState.Setters>
+						</VisualState>
+
+						<VisualState x:Name="Unchecked">
+							<VisualState.Setters>
+								<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDarkText}}" />
+								<Setter TargetName="label" Property="Label.Opacity" Value=".6" />
+								<Setter TargetName="label" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Tertiary}}" />
+							</VisualState.Setters>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateGroupList>
+			</VisualStateManager.VisualStateGroups>
+		</Border>
+	</ControlTemplate>
+
+</ResourceDictionary>
