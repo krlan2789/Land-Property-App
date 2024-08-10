@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Land_Property_App.Views.LandingPage"
+             NavigationPage.HasNavigationBar="False">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<ControlTemplate x:Key="SectionTemplate">
+				<Border WidthRequest="120" StrokeShape="RoundRectangle 20" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
+					<Label x:Name="label" Text="{TemplateBinding Content}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+					<VisualStateManager.VisualStateGroups>
+						<VisualStateGroupList>
+							<VisualStateGroup x:Name="CheckedStates">
+								<VisualState x:Name="Checked">
+									<VisualState.Setters>
+										<Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+										<Setter TargetName="label" Property="Label.Opacity" Value="1" />
+										<Setter TargetName="label" Property="Label.TextColor" Value="{StaticResource Tertiary}" />
+									</VisualState.Setters>
+								</VisualState>
+								
+								<VisualState x:Name="Unchecked">
+									<VisualState.Setters>
+										<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+										<Setter TargetName="label" Property="Label.Opacity" Value=".6" />
+										<Setter TargetName="label" Property="Label.TextColor" Value="{StaticResource PrimaryDarkText}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateGroupList>
+					</VisualStateManager.VisualStateGroups>
+				</Border>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<Grid RowDefinitions="Auto, Auto, *" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="32" BackgroundColor="{StaticResource Tertiary}" RowSpacing="32">
+		<Grid HorizontalOptions="FillAndExpand">
+			<VerticalStackLayout VerticalOptions="Center" Spacing="5">
+				<Label Text="Welcome back," TextColor="{StaticResource PrimaryDarkText}" Opacity="0.5" FontSize="12" />
+				<Label Text="Erlan!" TextColor="{StaticResource PrimaryDarkText}" FontAttributes="Bold" FontSize="16" />
+			</VerticalStackLayout>
+
+			<Border WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="End" StrokeShape="RoundRectangle 24, 24, 24, 24" StrokeThickness="2" Stroke="{StaticResource Primary}">
+				<Image Source="https://randomuser.me/api/portraits/men/73.jpg"/>
+			</Border>
+		</Grid>
+
+		<Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto" HorizontalOptions="FillAndExpand">
+			<Label Text="Indonesia" TextColor="{StaticResource PrimaryDarkText}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
+			<Image Source="map.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center" />
+			<Line Grid.Row="1" X1="0" X2="1000" Stroke="{StaticResource Secondary}" />
+			
+			<ScrollView Orientation="Horizontal" Grid.Row="2" HorizontalScrollBarVisibility="Never">
+				<HorizontalStackLayout x:Name="SectionList" Margin="0,20,0,0" BindableLayout.ItemsSource="{Binding Sections}" Spacing="10">
+					<BindableLayout.ItemTemplate>
+						<DataTemplate>
+							<RadioButton Content="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}" />
+						</DataTemplate>
+					</BindableLayout.ItemTemplate>
+				</HorizontalStackLayout>
+			</ScrollView>
+		</Grid>
+
+		<CollectionView x:Name="colView" Grid.Row="2" ItemsSource="{Binding Properties}" VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectedItem="{Binding SelectedProperty}" SelectionChangedCommand="{Binding OnPropertySelect}">
+			<CollectionView.ItemsLayout>
+				<GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="20" VerticalItemSpacing="20" />
+			</CollectionView.ItemsLayout>
+
+			<CollectionView.ItemTemplate>
+				<DataTemplate>
+					<Grid HeightRequest="210" WidthRequest="160">
+						<VerticalStackLayout Spacing="10">
+							<Border HeightRequest="160" StrokeThickness="0">
+								<Image Source="{Binding DefaultImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+							</Border>
+							<VerticalStackLayout>
+								<Label Text="{Binding Address}" TextColor="{StaticResource PrimaryDarkText}"  FontSize="12" Opacity="0.5"/>
+								<Label Text="{Binding Price, StringFormat='IDR {0:###,###,###}'}" TextColor="{StaticResource PrimaryDarkText}"  FontSize="16" FontAttributes="Bold"/>
+							</VerticalStackLayout>
+						</VerticalStackLayout>
+					</Grid>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+	</Grid>
+</ContentPage>
