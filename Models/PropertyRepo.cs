@@ -45,13 +45,34 @@ namespace Land_Property_App.Models
             },
             new Property {
                 Address = "Cibubur, South Jakarta",
-                Price = 1_400_000_000,
+                Price = 1_100_000_000,
                 DefaultImage = "https://cdn.pixabay.com/photo/2016/08/05/17/32/new-1572747_1280.jpg",
                 Images = [
                     "https://cdn.pixabay.com/photo/2021/12/05/02/32/interior-design-6846350_640.jpg",
                     "https://cdn.pixabay.com/photo/2019/05/24/11/00/interior-4226020_640.jpg",
                     "https://cdn.pixabay.com/photo/2021/06/13/19/22/room-6334131_640.jpg",
                     "https://cdn.pixabay.com/photo/2019/05/24/11/00/interior-4226020_640.jpg",
+                ],
+            },
+            new Property {
+                Address = "Bintaro, South Tanggerang",
+                Price = 850_000_000,
+                DefaultImage = "https://cdn.pixabay.com/photo/2016/08/05/17/32/new-1572747_1280.jpg",
+                Images = [
+                    "https://cdn.pixabay.com/photo/2021/12/05/02/32/interior-design-6846350_640.jpg",
+                    "https://cdn.pixabay.com/photo/2019/05/24/11/00/interior-4226020_640.jpg",
+                    "https://cdn.pixabay.com/photo/2021/06/13/19/22/room-6334131_640.jpg",
+                    "https://cdn.pixabay.com/photo/2019/05/24/11/00/interior-4226020_640.jpg",
+                ],
+            },
+            new Property {
+                Address = "Waru, Sidoarjo",
+                Price = 800_000_000,
+                DefaultImage = "https://cdn.pixabay.com/photo/2018/04/30/13/33/house-3362676_1280.jpg",
+                Images = [
+                    "https://cdn.pixabay.com/photo/2019/05/24/11/00/interior-4226020_640.jpg",
+                    "https://cdn.pixabay.com/photo/2021/12/05/02/32/interior-design-6846350_640.jpg",
+                    "https://cdn.pixabay.com/photo/2021/06/13/19/22/room-6334131_640.jpg",
                 ],
             },
         ];

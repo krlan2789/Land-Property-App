@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace Land_Property_App
 {
@@ -9,6 +10,7 @@ namespace Land_Property_App
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

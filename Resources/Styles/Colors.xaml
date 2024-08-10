@@ -8,10 +8,11 @@
 
 	<Color x:Key="Primary">#79688E</Color>
 	<Color x:Key="PrimaryDark">#4D425A</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
+    <Color x:Key="PrimaryDarkText">#212121</Color>
 	<Color x:Key="Secondary">#E1E1E1</Color>
-    <Color x:Key="SecondaryDarkText">#9880E5</Color>
+    <Color x:Key="SecondaryDarkText">#6E6E6E</Color>
     <Color x:Key="Tertiary">#FEFEFE</Color>
+	<Color x:Key="TertiaryDark">#404040</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

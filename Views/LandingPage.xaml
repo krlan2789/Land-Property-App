@@ -1,30 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Land_Property_App.Views.LandingPage"
              NavigationPage.HasNavigationBar="False">
 
 	<ContentPage.Resources>
 		<ResourceDictionary>
+			<Style TargetType="Label">
+				<Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Tertiary}}" />
+			</Style>
+			
+			<Style TargetType="Grid">
+				<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" />
+				<Setter Property="VisualStateManager.VisualStateGroups">
+					<VisualStateGroupList>
+						<VisualStateGroup x:Name="CommonStates">
+							<VisualState x:Name="Normal" />
+							<VisualState x:Name="Selected">
+								<VisualState.Setters>
+									<Setter Property="BackgroundColor" Value="Transparent" />
+								</VisualState.Setters>
+							</VisualState>
+						</VisualStateGroup>
+					</VisualStateGroupList>
+				</Setter>
+			</Style>
+			
+			<Style TargetType="Border">
+				<Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
+			</Style>
+			
 			<ControlTemplate x:Key="SectionTemplate">
-				<Border WidthRequest="120" StrokeShape="RoundRectangle 20" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
+				<Border WidthRequest="96" StrokeShape="RoundRectangle 24" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
 					<Label x:Name="label" Text="{TemplateBinding Content}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
 					<VisualStateManager.VisualStateGroups>
 						<VisualStateGroupList>
 							<VisualStateGroup x:Name="CheckedStates">
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-										<Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+										<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" />
 										<Setter TargetName="label" Property="Label.Opacity" Value="1" />
-										<Setter TargetName="label" Property="Label.TextColor" Value="{StaticResource Tertiary}" />
+										<Setter TargetName="label" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}" />
 									</VisualState.Setters>
 								</VisualState>
 								
 								<VisualState x:Name="Unchecked">
 									<VisualState.Setters>
-										<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+										<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDarkText}}" />
 										<Setter TargetName="label" Property="Label.Opacity" Value=".6" />
-										<Setter TargetName="label" Property="Label.TextColor" Value="{StaticResource PrimaryDarkText}" />
+										<Setter TargetName="label" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryDarkText}, Dark={StaticResource Tertiary}}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -35,25 +60,29 @@
 		</ResourceDictionary>
 	</ContentPage.Resources>
 
-	<Grid RowDefinitions="Auto, Auto, *" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="32" BackgroundColor="{StaticResource Tertiary}" RowSpacing="32">
+	<Grid RowDefinitions="Auto, Auto, *" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="24,24,24,0" RowSpacing="32">
 		<Grid HorizontalOptions="FillAndExpand">
 			<VerticalStackLayout VerticalOptions="Center" Spacing="5">
-				<Label Text="Welcome back," TextColor="{StaticResource PrimaryDarkText}" Opacity="0.5" FontSize="12" />
-				<Label Text="Erlan!" TextColor="{StaticResource PrimaryDarkText}" FontAttributes="Bold" FontSize="16" />
+				<Label Text="Welcome back," Opacity="0.85" FontSize="12" />
+				<Label Text="Erlan!" FontAttributes="Bold" FontSize="16" />
 			</VerticalStackLayout>
 
-			<Border WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="End" StrokeShape="RoundRectangle 24, 24, 24, 24" StrokeThickness="2" Stroke="{StaticResource Primary}">
-				<Image Source="https://randomuser.me/api/portraits/men/73.jpg"/>
+			<Border WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="End" StrokeShape="RoundRectangle 24, 24, 24, 24" StrokeThickness="2">
+				<Image Source="https://randomuser.me/api/portraits/men/64.jpg"/>
 			</Border>
 		</Grid>
 
 		<Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto" HorizontalOptions="FillAndExpand">
-			<Label Text="Indonesia" TextColor="{StaticResource PrimaryDarkText}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
-			<Image Source="map.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center" />
+			<Label Text="Indonesia" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
+			<Image Source="map_white.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center">
+				<Image.Behaviors>
+					<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
+				</Image.Behaviors>
+			</Image>
 			<Line Grid.Row="1" X1="0" X2="1000" Stroke="{StaticResource Secondary}" />
 			
 			<ScrollView Orientation="Horizontal" Grid.Row="2" HorizontalScrollBarVisibility="Never">
-				<HorizontalStackLayout x:Name="SectionList" Margin="0,20,0,0" BindableLayout.ItemsSource="{Binding Sections}" Spacing="10">
+				<HorizontalStackLayout x:Name="SectionList" Margin="0,24,0,0" BindableLayout.ItemsSource="{Binding Sections}" Spacing="10">
 					<BindableLayout.ItemTemplate>
 						<DataTemplate>
 							<RadioButton Content="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}" />
@@ -65,21 +94,23 @@
 
 		<CollectionView x:Name="colView" Grid.Row="2" ItemsSource="{Binding Properties}" VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectedItem="{Binding SelectedProperty}" SelectionChangedCommand="{Binding OnPropertySelect}">
 			<CollectionView.ItemsLayout>
-				<GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="20" VerticalItemSpacing="20" />
+				<GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="16" VerticalItemSpacing="16" />
 			</CollectionView.ItemsLayout>
 
 			<CollectionView.ItemTemplate>
 				<DataTemplate>
-					<Grid HeightRequest="210" WidthRequest="160">
-						<VerticalStackLayout Spacing="10">
-							<Border HeightRequest="160" StrokeThickness="0">
-								<Image Source="{Binding DefaultImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-							</Border>
+					<Grid HeightRequest="240" WidthRequest="172">
+						<Border StrokeShape="RoundRectangle 16" StrokeThickness="0" Padding="0" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource TertiaryDark}}">
 							<VerticalStackLayout>
-								<Label Text="{Binding Address}" TextColor="{StaticResource PrimaryDarkText}"  FontSize="12" Opacity="0.5"/>
-								<Label Text="{Binding Price, StringFormat='IDR {0:###,###,###}'}" TextColor="{StaticResource PrimaryDarkText}"  FontSize="16" FontAttributes="Bold"/>
+								<Border HeightRequest="160" StrokeThickness="0">
+									<Image Source="{Binding DefaultImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+								</Border>
+								<VerticalStackLayout Spacing="4" Padding="8,8,8,8">
+									<Label Text="{Binding Address}" FontSize="12" Opacity="0.85"/>
+									<Label Text="{Binding Price, StringFormat='IDR {0:###,###,###}'}" FontSize="16" FontAttributes="Bold"/>
+								</VerticalStackLayout>
 							</VerticalStackLayout>
-						</VerticalStackLayout>
+						</Border>
 					</Grid>
 				</DataTemplate>
 			</CollectionView.ItemTemplate>
