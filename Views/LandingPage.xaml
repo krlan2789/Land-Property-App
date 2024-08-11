@@ -7,15 +7,9 @@
 	x:Class="Land_Property_App.Views.LandingPage"
 	NavigationPage.HasNavigationBar="False">
 
-	<!--<ContentPage.Resources>
-		<ResourceDictionary>
-
-		</ResourceDictionary>
-	</ContentPage.Resources>-->
-
 	<Grid RowDefinitions="Auto, Auto, Auto, *" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
 		
-		<Grid HorizontalOptions="FillAndExpand" Padding="32,32,32,0">
+		<Grid x:Name="greetingView" HorizontalOptions="FillAndExpand" Padding="32,32,32,0">
 			<VerticalStackLayout VerticalOptions="Center" Spacing="5">
 				<Label Text="{x:Static labels:AppResources.WelcomeBackLabel}" Opacity="0.85" FontSize="12" />
 				<Label Text="Erlan!" FontAttributes="Bold" FontSize="16" />
@@ -26,7 +20,7 @@
 			</Border>
 		</Grid>
 
-		<Grid Grid.Row="1" RowDefinitions="Auto, Auto" Padding="32,32,32,0" RowSpacing="4" HorizontalOptions="FillAndExpand">
+		<Grid x:Name="locationView" Grid.Row="1" RowDefinitions="Auto, Auto" Padding="32,32,32,0" RowSpacing="4" HorizontalOptions="FillAndExpand">
 			<Label Text="Indonesia" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
 			<Image Source="map_white.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center">
 				<Image.Behaviors>
@@ -36,7 +30,7 @@
 			<Line Grid.Row="1" X1="0" X2="1000" Stroke="{StaticResource Secondary}" />
 		</Grid>
 
-		<Grid Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
+		<Grid x:Name="categoryView" Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
 			<ScrollView Orientation="Horizontal" Grid.Row="2" HorizontalScrollBarVisibility="Never">
 				<HorizontalStackLayout x:Name="SectionList" Padding="32,16,32,16" BindableLayout.ItemsSource="{Binding Sections}" Spacing="16">
 					<BindableLayout.ItemTemplate>

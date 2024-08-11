@@ -1,3 +1,4 @@
+using Land_Property_App.Animators;
 using Land_Property_App.Models;
 using Land_Property_App.ViewModels;
 
@@ -23,5 +24,40 @@ public partial class DetailsPage : ContentPage
 		}
 
 		this.BindingContext = viewModel;
+
+		SetViewPositions();
+
+		Loaded += PlayAnimationOnLoaded;
+    }
+
+	private void SetViewPositions()
+	{
+		detailsBtn.Opacity = 0;
+		detailsBtn.Scale = 0.2;
+
+		imagesView.TranslationX = 200;
+		imagesView.Opacity = 0;
+
+		addressView.TranslationX = -30;
+		addressView.TranslationY = -30;
+		addressView.Opacity = 0;
+
+		buyBtn.Opacity = 0;
+		buyBtn.Scale = 0.2;
+
+		popView.TranslationY = 300;
+		popView.Opacity = 0.5;
+	}
+
+	private void PlayAnimationOnLoaded(Object? sender, EventArgs? e)
+    {
+        SimpleAnimation.FadeAndScale(detailsBtn);
+        SimpleAnimation.FadeAndTranslate(imagesView);
+
+        Task.Delay(200);
+
+        SimpleAnimation.FadeAndTranslate(popView, 500, 500);
+        SimpleAnimation.FadeAndTranslate(addressView, 500, 500);
+        SimpleAnimation.FadeAndScale(buyBtn, 500, 500);
     }
 }

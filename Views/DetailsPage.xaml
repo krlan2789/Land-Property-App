@@ -32,10 +32,14 @@
 				</Grid>
 
 				<Grid x:Name="detailsBtn" HorizontalOptions="End" Margin="0,64,32,0" BackgroundColor="Transparent">
-					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.64" HeightRequest="80" WidthRequest="80" />
+					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.72" HeightRequest="80" WidthRequest="80" />
 					<VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-						<Image Source="expand.png" WidthRequest="12" />
-						<Label Text="{x:Static strings:AppResources.MoreDetailsButtonLabel}" FontSize="16" Opacity="0.64" />
+						<Image Source="expand.png" WidthRequest="12">
+							<Image.Behaviors>
+								<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}" />
+							</Image.Behaviors>
+						</Image>
+						<Label Text="{x:Static strings:AppResources.MoreDetailsButtonLabel}" FontSize="16" Opacity="0.72" />
 					</VerticalStackLayout>
 				</Grid>
 			</VerticalStackLayout>
@@ -54,7 +58,7 @@
 
 					<ImageButton BackgroundColor="Transparent" Source="close.png" WidthRequest="48" HeightRequest="48" HorizontalOptions="End" VerticalOptions="End" Command="{Binding OnCloseCommand}">
 						<ImageButton.Behaviors>
-							<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
+							<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}" />
 						</ImageButton.Behaviors>
 					</ImageButton>
 				</Grid>
