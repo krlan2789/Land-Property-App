@@ -2,7 +2,7 @@
 <ContentPage
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:strings="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:labels="clr-namespace:Land_Property_App.Resources.Strings"
 	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 	x:Class="Land_Property_App.Views.LandingPage"
 	NavigationPage.HasNavigationBar="False">
@@ -17,7 +17,7 @@
 		
 		<Grid HorizontalOptions="FillAndExpand" Padding="32,32,32,0">
 			<VerticalStackLayout VerticalOptions="Center" Spacing="5">
-				<Label Text="{x:Static strings:AppResources.WelcomeBackLabel}" Opacity="0.85" FontSize="12" />
+				<Label Text="{x:Static labels:AppResources.WelcomeBackLabel}" Opacity="0.85" FontSize="12" />
 				<Label Text="Erlan!" FontAttributes="Bold" FontSize="16" />
 			</VerticalStackLayout>
 
