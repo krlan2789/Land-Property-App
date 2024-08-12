@@ -6,58 +6,70 @@ namespace Land_Property_App.Views;
 
 public partial class DetailsPage : ContentPage
 {
-	public DetailsPage(Property selectedProperty)
-	{
-		InitializeComponent();
+    public DetailsPage(Property selectedProperty)
+    {
+        InitializeComponent();
 
         var viewModel = new DetailsViewModel()
-		{
-			SelectedProperty = selectedProperty,
-			MoreItems = 0,
+        {
+            SelectedProperty = selectedProperty,
+            CurrentImage = selectedProperty.DefaultImage,
+            MoreItems = 0,
             PropertyImages = selectedProperty?.Images ?? [],
-		};
+        };
 
-		if (selectedProperty?.Images?.Count > 2)
-		{
-			viewModel.PropertyImages = selectedProperty.Images.Take(2).ToList();
-			viewModel.MoreItems = selectedProperty.Images.Count - 2;
-		}
+        if (selectedProperty?.Images?.Count > 2)
+        {
+            viewModel.PropertyImages = selectedProperty.Images.Take(2).ToList();
+            viewModel.MoreItems = selectedProperty.Images.Count - 2;
+        }
+        else
+        {
+            ThumbnailFooterView.IsVisible = false;
+        }
 
-		this.BindingContext = viewModel;
+        TitleLabelView.IsVisible = !string.IsNullOrEmpty(selectedProperty?.Title);
+        AddressLabelView.IsVisible = !string.IsNullOrEmpty(selectedProperty?.Address);
 
-		SetViewPositions();
+        this.BindingContext = viewModel;
 
-		Loaded += PlayAnimationOnLoaded;
+        SetViewPositions();
+
+        Loaded += PlayAnimationOnLoaded;
     }
 
-	private void SetViewPositions()
-	{
-		detailsBtn.Opacity = 0;
-		detailsBtn.Scale = 0.2;
-
-		imagesView.TranslationX = 200;
-		imagesView.Opacity = 0;
-
-		addressView.TranslationX = -30;
-		addressView.TranslationY = -30;
-		addressView.Opacity = 0;
-
-		buyBtn.Opacity = 0;
-		buyBtn.Scale = 0.2;
-
-		popView.TranslationY = 300;
-		popView.Opacity = 0.5;
-	}
-
-	private void PlayAnimationOnLoaded(Object? sender, EventArgs? e)
+    private void SetViewPositions()
     {
-        SimpleAnimation.FadeAndScale(detailsBtn);
-        SimpleAnimation.FadeAndTranslate(imagesView);
+        FloatingBackButton.TranslationX = -200;
+        FloatingBackButton.Opacity = 0;
+
+        DetailsBtn.TranslationX = 200;
+        DetailsBtn.Opacity = 0;
+
+        ImagesView.TranslationX = 200;
+        ImagesView.Opacity = 0;
+
+        addressView.TranslationX = -30;
+        addressView.TranslationY = -30;
+        addressView.Opacity = 0;
+
+        BuyBtn.Opacity = 0;
+        BuyBtn.Scale = 0.2;
+
+        PopView.TranslationY = 300;
+        PopView.Opacity = 0.5;
+    }
+
+    private void PlayAnimationOnLoaded(Object? sender, EventArgs? e)
+    {
+        SimpleAnimation.FadeAndTranslate(FloatingBackButton);
+        SimpleAnimation.FadeAndTranslate(DetailsBtn);
+        SimpleAnimation.FadeAndTranslate(ImagesView);
 
         Task.Delay(200);
 
-        SimpleAnimation.FadeAndTranslate(popView, 500, 500);
+        SimpleAnimation.FadeAndTranslate(PopView, 500, 500);
         SimpleAnimation.FadeAndTranslate(addressView, 500, 500);
-        SimpleAnimation.FadeAndScale(buyBtn, 500, 500);
+        SimpleAnimation.FadeAndScale(BuyBtn, 500, 500);
     }
 }

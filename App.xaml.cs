@@ -8,7 +8,7 @@ namespace Land_Property_App
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LandingPage());
+            MainPage = new NavigationPage(new HomePage());
         }
     }
 }

@@ -25,17 +25,30 @@
 	</Style>
 
 	<Style TargetType="Border">
+		<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" />
+		<Setter Property="VisualStateManager.VisualStateGroups">
+			<VisualStateGroupList>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="Selected">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="Transparent" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+		</Setter>
 		<Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
 	</Style>
 
 	<Style TargetType="Button">
 		<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
 		<Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
-		<Setter Property="CornerRadius" Value="24" />
+		<Setter Property="CornerRadius" Value="40" />
 	</Style>
 
 	<ControlTemplate x:Key="SectionTemplate">
-		<Border WidthRequest="96" StrokeShape="RoundRectangle 24" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
+		<Border MinimumWidthRequest="80" StrokeShape="RoundRectangle 24" Padding="16,8" StrokeThickness="0" BackgroundColor="{StaticResource Secondary}">
 			<Label x:Name="label" Text="{TemplateBinding Content}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
 			<VisualStateManager.VisualStateGroups>
 				<VisualStateGroupList>

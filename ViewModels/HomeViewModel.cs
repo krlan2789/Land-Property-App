@@ -1,29 +1,25 @@
 ﻿using Land_Property_App.Models;
 using Land_Property_App.Resources.Strings;
 using Land_Property_App.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Land_Property_App.ViewModels
 {
-    public class LandingViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
-        public List<string> Sections => [
-            AppResources.TagTrendingLabel,
-            AppResources.TagPopularLabel,
+        public List<string> Tags => [
+            AppResources.TagNewLabel,
             AppResources.TagSaleLabel,
-            AppResources.TagRentLabel
+            AppResources.TagRentLabel,
+            AppResources.TagSaleCreditLabel,
         ];
 
         public List<Property> Properties => PropertyRepo.AllPropreties;
 
         public Property? SelectedProperty { get; set; }
 
-        public ICommand OnPropertySelect => new Command(obj => {
+        public ICommand OnPropertySelect => new Command(obj =>
+        {
             if (SelectedProperty != null)
             {
                 Application.Current?.MainPage?.Navigation.PushAsync(new DetailsPage(SelectedProperty));

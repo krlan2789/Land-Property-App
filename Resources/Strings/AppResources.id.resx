@@ -101,18 +101,19 @@
   <data name="WelcomeBackLabel" xml:space="preserve">
     <value>Selamat datang kembali,</value>
   </data>
-  <data name="TagTrendingLabel" xml:space="preserve">
-    <value>Trending</value>
-  </data>
-  <data name="TagPopularLabel" xml:space="preserve">
-    <value>Populer</value>
+  <data name="TagNewLabel" xml:space="preserve">
+    <value>Properti Terbaru</value>
   </data>
   <data name="TagSaleLabel" xml:space="preserve">
     <value>Dijual</value>
   </data>
+  <data name="TagSaleCreditLabel" xml:space="preserve">
+    <value>KPR</value>
+  </data>
   <data name="TagRentLabel" xml:space="preserve">
     <value>Dikontrakan</value>
   </data>
+  
   <data name="TypeHouseLabel" xml:space="preserve">
     <value>Rumah</value>
   </data>
@@ -122,11 +123,39 @@
   <data name="TypeCommercialBuildingLabel" xml:space="preserve">
     <value>Bangunan Komersial</value>
   </data>
+  <data name="TypeOfficeLabel" xml:space="preserve">
+    <value>Kantor</value>
+  </data>
 
   <data name="BuyButtonLabel" xml:space="preserve">
     <value>Beli sekarang</value>
   </data>
+  <data name="MoreInfoButtonLabel" xml:space="preserve">
+    <value>Lihat Lebih Banyak</value>
+  </data>
+  <data name="CallButtonLabel" xml:space="preserve">
+    <value>Hubungi</value>
+  </data>
   <data name="MoreDetailsButtonLabel" xml:space="preserve">
     <value>Rincian</value>
+  </data>
+
+  <data name="PropertySpecTitleLabel" xml:space="preserve">
+    <value>Spesifikasi Properti</value>
+  </data>
+  <data name="PropertySpecBedroomLabel" xml:space="preserve">
+    <value>Kamar Tidur</value>
+  </data>
+  <data name="PropertySpecBathroomLabel" xml:space="preserve">
+    <value>Kamar Mandi</value>
+  </data>
+  <data name="PropertySpecLandAreaLabel" xml:space="preserve">
+    <value>Luas Tanah</value>
+  </data>
+  <data name="PropertySpecBuildingAreaLabel" xml:space="preserve">
+    <value>Luas Bangunan</value>
+  </data>
+  <data name="PropertySpecPropertyTypeLabel" xml:space="preserve">
+    <value>Tipe Properti</value>
   </data>
 </root>

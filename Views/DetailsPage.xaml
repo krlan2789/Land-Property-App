@@ -3,18 +3,30 @@
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:strings="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:Models="clr-namespace:Land_Property_App.Models"
 	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:vm="clr-namespace:Land_Property_App.ViewModels"
+	x:DataType="vm:DetailsViewModel"
 	x:Class="Land_Property_App.Views.DetailsPage"
 	NavigationPage.HasNavigationBar="False">
 
 	<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-		<Image Aspect="AspectFill" Source="{Binding SelectedProperty.DefaultImage}" Margin="0,0,0,168" />
+		<!--<Image Aspect="AspectFill" Source="{Binding CurrentImage}" Margin="0,0,0,168" />-->
+		<CarouselView ItemsSource="{Binding SelectedProperty.Images}" ItemsLayout="VerticalList" Loop="False">
+			<CarouselView.ItemTemplate>
+				<DataTemplate x:DataType="x:String">
+					<Frame Padding="0">
+						<Image Aspect="AspectFill" Source="{Binding .}" Margin="0,0,0,180" />
+					</Frame>
+				</DataTemplate>
+			</CarouselView.ItemTemplate>
+		</CarouselView>
 
 		<Grid RowDefinitions="*, Auto" BackgroundColor="Transparent">
 			<VerticalStackLayout x:Name="sideView">
-				<Grid x:Name="imagesView" WidthRequest="80" VerticalOptions="Start" HorizontalOptions="End" Margin="0,64,32,0" BackgroundColor="Transparent" >
+				<Grid x:Name="ImagesView" Grid.Row="0" WidthRequest="80" VerticalOptions="Start" HorizontalOptions="End" Margin="0,32,32,0" BackgroundColor="Transparent" >
 					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.92" />
-					<CollectionView Margin="0,10" ItemsSource="{Binding PropertyImages}">
+					<CollectionView x:Name="ThumbnailColView" Margin="0,10" ItemsSource="{Binding PropertyImages}" SelectionMode="Single" SelectedItem="{Binding CurrentImage}">
 						<CollectionView.ItemTemplate>
 							<DataTemplate>
 								<Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" StrokeShape="RoundRectangle 32" StrokeThickness="0" Margin="0,0,0,8">
@@ -24,17 +36,17 @@
 						</CollectionView.ItemTemplate>
 
 						<CollectionView.Footer>
-							<Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" StrokeShape="RoundRectangle 32" StrokeThickness="0" BackgroundColor="{StaticResource Primary}" >
-								<Label Text="{Binding MoreItems, StringFormat='+{0}'}" TextColor="{StaticResource Tertiary}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+							<Border x:Name="ThumbnailFooterView" WidthRequest="64" HeightRequest="64" HorizontalOptions="Center" StrokeShape="RoundRectangle 32" StrokeThickness="0" BackgroundColor="{StaticResource Primary}" >
+								<Label Text="{Binding MoreItems, StringFormat='+{0}'}" TextColor="{StaticResource Tertiary}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
 							</Border>
 						</CollectionView.Footer>
 					</CollectionView>
 				</Grid>
 
-				<Grid x:Name="detailsBtn" HorizontalOptions="End" Margin="0,64,32,0" BackgroundColor="Transparent">
-					<Rectangle Fill="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" RadiusX="48" RadiusY="48" StrokeThickness="0" Opacity="0.72" HeightRequest="80" WidthRequest="80" />
+				<Grid x:Name="DetailsBtn" HorizontalOptions="End" Margin="0,32,32,0" BackgroundColor="Transparent">
+					<Button BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" Opacity="0.72" HeightRequest="80" WidthRequest="80" CornerRadius="64" Command="{Binding OnDetailsSpecCommand}" />
 					<VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-						<Image Source="expand.png" WidthRequest="12">
+						<Image Source="expand_64.png" WidthRequest="12">
 							<Image.Behaviors>
 								<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}" />
 							</Image.Behaviors>
@@ -44,26 +56,53 @@
 				</Grid>
 			</VerticalStackLayout>
 			
-			<Grid x:Name="popView" Grid.Row="1" BackgroundColor="Transparent">
+			<Grid x:Name="PopView" Grid.Row="1" BackgroundColor="Transparent">
 				<Border StrokeShape="RoundRectangle 32,32,0,0" StrokeThickness="0" Opacity="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}" />
-				<Grid Padding="32" BackgroundColor="Transparent">
-					<VerticalStackLayout>
-						<VerticalStackLayout x:Name="addressView">
-							<Label Text="{Binding SelectedProperty.Address}" FontSize="20" Opacity="0.75" />
-							<Label Text="{Binding SelectedProperty.Price, StringFormat='IDR {0:###,###,###}'}" FontSize="28" FontAttributes="Bold" />
-						</VerticalStackLayout>
-
-						<Button x:Name="buyBtn" Text="{x:Static strings:AppResources.BuyButtonLabel}" FontAttributes="Bold" FontSize="20" HeightRequest="48" WidthRequest="192" HorizontalOptions="Start" Margin="0,20,0,0" />
+				<Grid Padding="32" RowDefinitions="Auto, 48" BackgroundColor="Transparent" RowSpacing="16">
+					<VerticalStackLayout Grid.Row="0" x:Name="addressView">
+						<Label x:Name="TitleLabelView" Text="{Binding SelectedProperty.Title}" FontSize="24" Opacity="1" />
+						<Label x:Name="AddressLabelView" Text="{Binding SelectedProperty.Address}" FontSize="20" Opacity="0.75" />
+						<Label x:Name="PriceLabelView" Text="{Binding SelectedProperty.Price, StringFormat='IDR {0:###,###,###}'}" FontSize="28" FontAttributes="Bold" Margin="0,16,0,0" />
 					</VerticalStackLayout>
 
-					<ImageButton BackgroundColor="Transparent" Source="close.png" WidthRequest="48" HeightRequest="48" HorizontalOptions="End" VerticalOptions="End" Command="{Binding OnCloseCommand}">
-						<ImageButton.Behaviors>
-							<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}" />
-						</ImageButton.Behaviors>
-					</ImageButton>
+					<Grid Grid.Row="1" ColumnDefinitions="*, 48, 48" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Fill" ColumnSpacing="16">
+						<Grid Grid.Column="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+							<Button x:Name="BuyBtn" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" Command="{Binding OnDetailsSpecCommand}" />
+							<HorizontalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Padding="12,0,16,0" Spacing="8" BackgroundColor="Transparent">
+								<Image Source="expand_64.png" WidthRequest="20" Aspect="AspectFit">
+									<Image.Behaviors>
+										<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+									</Image.Behaviors>
+								</Image>
+								<Label Text="{x:Static strings:AppResources.MoreInfoButtonLabel}" VerticalTextAlignment="Center" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+							</HorizontalStackLayout>
+						</Grid>
+
+						<Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" StrokeShape="RoundRectangle 32" StrokeThickness="0" WidthRequest="48" HeightRequest="48" HorizontalOptions="End" VerticalOptions="End">
+							<ImageButton Source="phone_solid.png" Padding="8" Command="{Binding OnCloseCommand}">
+								<ImageButton.Behaviors>
+									<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+								</ImageButton.Behaviors>
+							</ImageButton>
+						</Border>
+					
+						<Border Grid.Column="2" BackgroundColor="Teal" StrokeShape="RoundRectangle 32,32,4,32" StrokeThickness="0" Padding="2" WidthRequest="48" HeightRequest="48" Margin="0" HorizontalOptions="End" VerticalOptions="End">
+							<ImageButton x:Name="WhatsAppBtn" Source="whatsapp_logo.png" Command="{Binding OpenUrl}" CommandParameter="{Binding SelectedProperty.WhatsAppLink}" />
+						</Border>
+					</Grid>
 				</Grid>
 			</Grid>
 		</Grid>
+
+		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Margin="12" >
+			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="8">
+				<ImageButton.Shadow>
+					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
+					Offset="4,4"
+					Radius="16"
+					Opacity="0.32" />
+				</ImageButton.Shadow>
+			</ImageButton>
+		</Border>
 	</Grid>
-	
 </ContentPage>

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Land_Property_App.Models
+﻿namespace Land_Property_App.Models
 {
     public enum PropertyType
     {
-        House = 0,
-        Apartment = 1,
-        ComercialBuilding = 2,
+        HOUSE = 0,
+        APARTMENT = 1,
+        COMMERCIAL_BUILDING = 2,
+        OFFICE = 3,
     }
 }

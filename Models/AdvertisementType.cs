@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Land_Property_App.Models
 {
-    public enum PropertyContractType
+    public enum AdvertisementType
     {
-        Sale = 0,
-        Rent = 1,
+        SALE = 10,
+        SALE_CREDIT = 11,
+        RENT = 20,
     }
 }

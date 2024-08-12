@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:strings="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:Models="clr-namespace:Land_Property_App.Models"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:vm="clr-namespace:Land_Property_App.ViewModels"
+	x:DataType="vm:DetailsSpecViewModel"
+	x:Class="Land_Property_App.Views.DetailsSpecPage"
+	NavigationPage.HasNavigationBar="False">
+
+	<Grid RowDefinitions="Auto, *, Auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="Transparent">
+		<CarouselView ItemsSource="{Binding SelectedProperty.Images}" ItemsLayout="HorizontalList" HeightRequest="320" Loop="False">
+			<CarouselView.ItemTemplate>
+				<DataTemplate x:DataType="x:String">
+					<Frame Padding="0" CornerRadius="0">
+						<Image Source="{Binding .}" Aspect="AspectFill" />
+					</Frame>
+				</DataTemplate>
+			</CarouselView.ItemTemplate>
+		</CarouselView>
+
+		<ScrollView Orientation="Vertical" Grid.Row="1" VerticalScrollBarVisibility="Never">
+			<VerticalStackLayout Margin="0" Spacing="8">
+				<VerticalStackLayout Spacing="4" Padding="16">
+					<Label Text="{Binding SelectedProperty.Title}" FontSize="20" FontAttributes="Bold"/>
+					<Label Text="{Binding SelectedProperty.Address}" FontSize="15" Opacity="0.84" />
+				</VerticalStackLayout>
+
+				<Border StrokeThickness="0" HeightRequest="6" Opacity="0.32" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"/>
+
+				<VerticalStackLayout Spacing="4" Padding="16">
+					<Label Text="{x:Static strings:AppResources.PropertySpecTitleLabel}" FontSize="20" FontAttributes="Bold"/>
+
+					<VerticalStackLayout Spacing="8" Padding="0,8">
+						<CollectionView ItemsSource="{Binding SelectedProperty.PropertySpecs}">
+							<CollectionView.ItemsLayout>
+								<LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
+							</CollectionView.ItemsLayout>
+							
+							<CollectionView.ItemTemplate>
+								<DataTemplate x:DataType="Models:PropertySpecItem">
+									<Grid RowDefinitions="Auto, 2" ColumnDefinitions="*, *" RowSpacing="8" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+										<Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="13" Opacity="0.64" BackgroundColor="Transparent" />
+										<Label Grid.Column="1" Grid.Row="0" Text="{Binding Value}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="14" FontAttributes="Bold" BackgroundColor="Transparent" />
+										<Border Grid.Row="1" Grid.ColumnSpan="2" StrokeThickness="0" HeightRequest="1" Opacity="0.16" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+									</Grid>
+								</DataTemplate>
+							</CollectionView.ItemTemplate>
+						</CollectionView>
+					</VerticalStackLayout>
+				</VerticalStackLayout>
+			</VerticalStackLayout>
+		</ScrollView>
+
+		<Grid x:Name="FooterView" Grid.Row="2" RowDefinitions="1, *" BackgroundColor="Transparent">
+			<Border Grid.Row="0" StrokeThickness="0" Opacity="0.32" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+
+			<Grid Grid.Row="1" HeightRequest="80" ColumnDefinitions="*, Auto, 48" Padding="16,16" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Fill" ColumnSpacing="8">
+				<Border Grid.Column="0" BackgroundColor="Transparent" StrokeThickness="0" VerticalOptions="FillAndExpand">
+					<Label x:Name="PriceLabelView" Text="{Binding SelectedProperty.Price, StringFormat='IDR {0:###,###,###}'}" FontSize="20" FontAutoScalingEnabled="True" FontAttributes="Bold" VerticalTextAlignment="Center" />
+				</Border>
+
+				<Grid Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+					<Button x:Name="BuyBtn" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+					<HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="12,0,16,0" Spacing="4" BackgroundColor="Transparent">
+						<Image Source="phone_solid.png" WidthRequest="16" Aspect="AspectFit">
+							<Image.Behaviors>
+								<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+							</Image.Behaviors>
+						</Image>
+						<Label Text="{x:Static strings:AppResources.CallButtonLabel}" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+					</HorizontalStackLayout>
+				</Grid>
+
+				<Border Grid.Column="2" BackgroundColor="Teal" StrokeShape="RoundRectangle 32,32,4,32" StrokeThickness="0" Padding="2">
+					<ImageButton x:Name="WhatsAppBtn" Source="whatsapp_logo.png" Command="{Binding OpenUrl}" CommandParameter="{Binding SelectedProperty.WhatsAppLink}" />
+				</Border>
+			</Grid>
+		</Grid>
+
+		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Margin="12" >
+			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="8">
+				<ImageButton.Shadow>
+					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
+					Offset="4,4"
+					Radius="16"
+					Opacity="0.32" />
+				</ImageButton.Shadow>
+			</ImageButton>
+		</Border>
+	</Grid>
+
+</ContentPage>

@@ -3,24 +3,27 @@
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:labels="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:Models="clr-namespace:Land_Property_App.Models"
 	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-	x:Class="Land_Property_App.Views.LandingPage"
+	xmlns:vm="clr-namespace:Land_Property_App.ViewModels"
+	x:DataType="vm:HomeViewModel"
+	x:Class="Land_Property_App.Views.HomePage"
 	NavigationPage.HasNavigationBar="False">
 
 	<Grid RowDefinitions="Auto, Auto, Auto, *" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
 		
-		<Grid x:Name="greetingView" HorizontalOptions="FillAndExpand" Padding="32,32,32,0">
+		<Grid x:Name="GreetingView" HorizontalOptions="FillAndExpand" Padding="32,32,32,0">
 			<VerticalStackLayout VerticalOptions="Center" Spacing="5">
 				<Label Text="{x:Static labels:AppResources.WelcomeBackLabel}" Opacity="0.85" FontSize="12" />
 				<Label Text="Erlan!" FontAttributes="Bold" FontSize="16" />
 			</VerticalStackLayout>
 
-			<Border WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="End" StrokeShape="RoundRectangle 24, 24, 24, 24" StrokeThickness="2">
+			<Border WidthRequest="48" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="End" StrokeShape="RoundRectangle 24,24,24,24" StrokeThickness="2">
 				<Image Source="https://randomuser.me/api/portraits/men/64.jpg"/>
 			</Border>
 		</Grid>
 
-		<Grid x:Name="locationView" Grid.Row="1" RowDefinitions="Auto, Auto" Padding="32,32,32,0" RowSpacing="4" HorizontalOptions="FillAndExpand">
+		<Grid x:Name="LocationView" Grid.Row="1" RowDefinitions="Auto, Auto" Padding="32,32,32,0" RowSpacing="4" HorizontalOptions="FillAndExpand">
 			<Label Text="Indonesia" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
 			<Image Source="map_white.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center">
 				<Image.Behaviors>
@@ -30,9 +33,9 @@
 			<Line Grid.Row="1" X1="0" X2="1000" Stroke="{StaticResource Secondary}" />
 		</Grid>
 
-		<Grid x:Name="categoryView" Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
+		<Grid x:Name="CategoryView" Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
 			<ScrollView Orientation="Horizontal" Grid.Row="2" HorizontalScrollBarVisibility="Never">
-				<HorizontalStackLayout x:Name="SectionList" Padding="32,16,32,16" BindableLayout.ItemsSource="{Binding Sections}" Spacing="16">
+				<HorizontalStackLayout x:Name="TagsList" Padding="32,16,32,16" BindableLayout.ItemsSource="{Binding Tags}" Spacing="16">
 					<BindableLayout.ItemTemplate>
 						<DataTemplate>
 							<RadioButton Content="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}" />
@@ -42,13 +45,13 @@
 			</ScrollView>
 		</Grid>
 
-		<CollectionView x:Name="colView" Grid.Row="3" ItemsSource="{Binding Properties}" VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectedItem="{Binding SelectedProperty}" SelectionChangedCommand="{Binding OnPropertySelect}">
+		<CollectionView x:Name="ColView" Grid.Row="3" ItemsSource="{Binding Properties}" VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectedItem="{Binding SelectedProperty}" SelectionChangedCommand="{Binding OnPropertySelect}">
 			<CollectionView.ItemsLayout>
 				<GridItemsLayout Orientation="Vertical" Span="1" HorizontalItemSpacing="16" VerticalItemSpacing="0" />
 			</CollectionView.ItemsLayout>
 
 			<CollectionView.ItemTemplate>
-				<DataTemplate>
+				<DataTemplate x:DataType="Models:Property">
 					<Grid MinimumWidthRequest="200" Padding="32,0,32,32" Margin="0">
 						<Border StrokeShape="RoundRectangle 16" StrokeThickness="0" Padding="0" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource TertiaryDark}}">
 							<VerticalStackLayout>
@@ -58,6 +61,9 @@
 								<HorizontalStackLayout Spacing="4" Padding="8,8,8,0">
 									<Border StrokeShape="RoundRectangle 24" Padding="12,4" StrokeThickness="0" BackgroundColor="{StaticResource Primary}">
 										<Label Text="{Binding BuildingTypeLabel}" TextColor="{StaticResource Tertiary}" FontSize="10"></Label>
+									</Border>
+									<Border StrokeShape="RoundRectangle 24" Stroke="{StaticResource Primary}" Padding="12,4" StrokeThickness="1" BackgroundColor="{StaticResource Tertiary}">
+										<Label Text="{Binding AdsTypeLabel}" TextColor="{StaticResource Primary}" FontSize="10" FontAttributes="Bold"></Label>
 									</Border>
 								</HorizontalStackLayout>
 								<VerticalStackLayout Spacing="4" Padding="8,8,8,8">

@@ -70,6 +70,15 @@ namespace Land_Property_App.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        internal static string CallButtonLabel {
+            get {
+                return ResourceManager.GetString("CallButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string MoreDetailsButtonLabel {
@@ -79,11 +88,74 @@ namespace Land_Property_App.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Popular.
+        ///   Looks up a localized string similar to More Info.
         /// </summary>
-        internal static string TagPopularLabel {
+        internal static string MoreInfoButtonLabel {
             get {
-                return ResourceManager.GetString("TagPopularLabel", resourceCulture);
+                return ResourceManager.GetString("MoreInfoButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bathroom.
+        /// </summary>
+        internal static string PropertySpecBathroomLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecBathroomLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bedroom.
+        /// </summary>
+        internal static string PropertySpecBedroomLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecBedroomLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building Area.
+        /// </summary>
+        internal static string PropertySpecBuildingAreaLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecBuildingAreaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land Area.
+        /// </summary>
+        internal static string PropertySpecLandAreaLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecLandAreaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Type.
+        /// </summary>
+        internal static string PropertySpecPropertyTypeLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecPropertyTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Specifications.
+        /// </summary>
+        internal static string PropertySpecTitleLabel {
+            get {
+                return ResourceManager.GetString("PropertySpecTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Property.
+        /// </summary>
+        internal static string TagNewLabel {
+            get {
+                return ResourceManager.GetString("TagNewLabel", resourceCulture);
             }
         }
         
@@ -97,20 +169,20 @@ namespace Land_Property_App.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit.
+        /// </summary>
+        internal static string TagSaleCreditLabel {
+            get {
+                return ResourceManager.GetString("TagSaleCreditLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sale.
         /// </summary>
         internal static string TagSaleLabel {
             get {
                 return ResourceManager.GetString("TagSaleLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Trending.
-        /// </summary>
-        internal static string TagTrendingLabel {
-            get {
-                return ResourceManager.GetString("TagTrendingLabel", resourceCulture);
             }
         }
         
@@ -138,6 +210,15 @@ namespace Land_Property_App.Resources.Strings {
         internal static string TypeHouseLabel {
             get {
                 return ResourceManager.GetString("TypeHouseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office.
+        /// </summary>
+        internal static string TypeOfficeLabel {
+            get {
+                return ResourceManager.GetString("TypeOfficeLabel", resourceCulture);
             }
         }
         

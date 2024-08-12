@@ -120,18 +120,19 @@
   <data name="WelcomeBackLabel" xml:space="preserve">
     <value>Welcome back,</value>
   </data>
-  <data name="TagTrendingLabel" xml:space="preserve">
-    <value>Trending</value>
-  </data>
-  <data name="TagPopularLabel" xml:space="preserve">
-    <value>Popular</value>
+  <data name="TagNewLabel" xml:space="preserve">
+    <value>Latest Property</value>
   </data>
   <data name="TagSaleLabel" xml:space="preserve">
     <value>Sale</value>
   </data>
+  <data name="TagSaleCreditLabel" xml:space="preserve">
+    <value>Credit</value>
+  </data>
   <data name="TagRentLabel" xml:space="preserve">
     <value>Rent</value>
   </data>
+  
   <data name="TypeHouseLabel" xml:space="preserve">
     <value>House</value>
   </data>
@@ -141,11 +142,39 @@
   <data name="TypeCommercialBuildingLabel" xml:space="preserve">
     <value>Commercial Building</value>
   </data>
+  <data name="TypeOfficeLabel" xml:space="preserve">
+    <value>Office</value>
+  </data>
   
   <data name="BuyButtonLabel" xml:space="preserve">
     <value>Buy now</value>
   </data>
+  <data name="MoreInfoButtonLabel" xml:space="preserve">
+    <value>More Info</value>
+  </data>
+  <data name="CallButtonLabel" xml:space="preserve">
+    <value>Contact</value>
+  </data>
   <data name="MoreDetailsButtonLabel" xml:space="preserve">
     <value>Details</value>
+  </data>
+  
+  <data name="PropertySpecTitleLabel" xml:space="preserve">
+    <value>Property Specifications</value>
+  </data>
+  <data name="PropertySpecBedroomLabel" xml:space="preserve">
+    <value>Bedroom</value>
+  </data>
+  <data name="PropertySpecBathroomLabel" xml:space="preserve">
+    <value>Bathroom</value>
+  </data>
+  <data name="PropertySpecLandAreaLabel" xml:space="preserve">
+    <value>Land Area</value>
+  </data>
+  <data name="PropertySpecBuildingAreaLabel" xml:space="preserve">
+    <value>Building Area</value>
+  </data>
+  <data name="PropertySpecPropertyTypeLabel" xml:space="preserve">
+    <value>Property Type</value>
   </data>
 </root>
