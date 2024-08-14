@@ -1,4 +1,5 @@
 using Land_Property_App.Animators;
+using Land_Property_App.Database;
 using Land_Property_App.Models;
 using Land_Property_App.ViewModels;
 
@@ -6,24 +7,13 @@ namespace Land_Property_App.Views;
 
 public partial class DetailsPage : ContentPage
 {
-    public DetailsPage(Property selectedProperty)
+    public DetailsPage(DatabaseContext dbContext, Property selectedProperty)
     {
         InitializeComponent();
 
-        var viewModel = new DetailsViewModel()
-        {
-            SelectedProperty = selectedProperty,
-            CurrentImage = selectedProperty.DefaultImage,
-            MoreItems = 0,
-            PropertyImages = selectedProperty?.Images ?? [],
-        };
+        DetailsViewModel viewModel = new DetailsViewModel(dbContext, selectedProperty);
 
-        if (selectedProperty?.Images?.Count > 2)
-        {
-            viewModel.PropertyImages = selectedProperty.Images.Take(2).ToList();
-            viewModel.MoreItems = selectedProperty.Images.Count - 2;
-        }
-        else
+        if (selectedProperty?.Images?.Count <= 2)
         {
             ThumbnailFooterView.IsVisible = false;
         }

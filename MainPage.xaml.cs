@@ -7,6 +7,8 @@
         public MainPage()
         {
             InitializeComponent();
+
+            //if (VersionTracking.IsFirstLaunchEver) ;
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
@@ -21,5 +23,4 @@
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
-
 }

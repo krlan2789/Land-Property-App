@@ -1,4 +1,5 @@
 using Land_Property_App.Animators;
+using Land_Property_App.Database;
 using Land_Property_App.Models;
 using Land_Property_App.ViewModels;
 
@@ -6,16 +7,11 @@ namespace Land_Property_App.Views;
 
 public partial class DetailsSpecPage : ContentPage
 {
-    public DetailsSpecPage(Property selectedProperty)
+    public DetailsSpecPage(DatabaseContext dbContext, Property selectedProperty)
     {
         InitializeComponent();
 
-        var viewModel = new DetailsSpecViewModel()
-        {
-            SelectedProperty = selectedProperty,
-        };
-
-        this.BindingContext = viewModel;
+        BindingContext = new DetailsSpecViewModel(dbContext, selectedProperty);
 
         SetViewPositions();
 

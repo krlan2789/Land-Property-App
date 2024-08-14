@@ -24,7 +24,7 @@
 		</Grid>
 
 		<Grid x:Name="LocationView" Grid.Row="1" RowDefinitions="Auto, Auto" Padding="32,32,32,0" RowSpacing="4" HorizontalOptions="FillAndExpand">
-			<Label Text="Indonesia" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
+			<Label x:Name="LocationValue" Text="Indonesia" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" />
 			<Image Source="map_white.png" WidthRequest="32" HorizontalOptions="End" VerticalOptions="Center">
 				<Image.Behaviors>
 					<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Tertiary}}" />
@@ -33,12 +33,12 @@
 			<Line Grid.Row="1" X1="0" X2="1000" Stroke="{StaticResource Secondary}" />
 		</Grid>
 
-		<Grid x:Name="CategoryView" Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
+		<Grid x:Name="TagSelectionView" Grid.Row="2" RowDefinitions="Auto" HorizontalOptions="FillAndExpand">
 			<ScrollView Orientation="Horizontal" Grid.Row="2" HorizontalScrollBarVisibility="Never">
 				<HorizontalStackLayout x:Name="TagsList" Padding="32,16,32,16" BindableLayout.ItemsSource="{Binding Tags}" Spacing="16">
 					<BindableLayout.ItemTemplate>
 						<DataTemplate>
-							<RadioButton Content="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}" />
+							<RadioButton Content="{Binding .}" Value="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}" CheckedChanged="OnTagCheckedChanged" />
 						</DataTemplate>
 					</BindableLayout.ItemTemplate>
 				</HorizontalStackLayout>

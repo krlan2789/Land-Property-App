@@ -1,8 +1,10 @@
-﻿using System.Numerics;
+﻿using Land_Property_App.Database;
+using SQLite;
+using System.Numerics;
 
 namespace Land_Property_App.Models
 {
-    public class PropertyRepo
+    public class PropertyRepo : BaseRepo
     {
         public static List<Property> AllPropreties => [
             new Property {
@@ -173,5 +175,13 @@ namespace Land_Property_App.Models
                 ],
             },
         ];
+
+        public string StatusMessage { get; set; }
+
+        public PropertyRepo(string dbPath)
+        {
+            Init(dbPath);
+            StatusMessage = "";
+        }
     }
 }

@@ -1,13 +1,21 @@
 ﻿using Land_Property_App.Resources.Strings;
+using SQLite;
 using System.Numerics;
 
 namespace Land_Property_App.Models
 {
+    [Table("property")]
     public class Property
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        [MaxLength(256), NotNull]
         public required string Title { get; set; }
         //public required bool AvailableBuy { get; set; }
+
         public required bool AvailableRent { get; set; }
+
         public required PropertyType BuildingType { get; set; }
         public required AdvertisementType AdsType { get; set; }
         public required string Address { get; set; }
