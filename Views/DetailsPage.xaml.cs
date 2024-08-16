@@ -21,7 +21,7 @@ public partial class DetailsPage : ContentPage
         TitleLabelView.IsVisible = !string.IsNullOrEmpty(selectedProperty?.Title);
         AddressLabelView.IsVisible = !string.IsNullOrEmpty(selectedProperty?.Address);
 
-        this.BindingContext = viewModel;
+        BindingContext = viewModel;
 
         SetViewPositions();
 
