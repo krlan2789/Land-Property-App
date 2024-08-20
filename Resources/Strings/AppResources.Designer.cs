@@ -151,6 +151,15 @@ namespace Land_Property_App.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Location.
+        /// </summary>
+        internal static string SelectLocationButtonLabel {
+            get {
+                return ResourceManager.GetString("SelectLocationButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest Property.
         /// </summary>
         internal static string TagNewLabel {

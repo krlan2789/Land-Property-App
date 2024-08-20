@@ -79,7 +79,7 @@
 						</Grid>
 
 						<Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" StrokeShape="RoundRectangle 32" StrokeThickness="0" WidthRequest="48" HeightRequest="48" HorizontalOptions="End" VerticalOptions="End">
-							<ImageButton Source="phone_solid.png" Padding="8" Command="{Binding OnCloseCommand}">
+							<ImageButton Source="phone_solid.png" Padding="10" Command="{Binding SelectedProperty.PhoneCall}">
 								<ImageButton.Behaviors>
 									<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
 								</ImageButton.Behaviors>
@@ -94,7 +94,7 @@
 			</Grid>
 		</Grid>
 
-		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Margin="12" >
+		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" Padding="0" WidthRequest="48" Margin="12" >
 			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="8">
 				<ImageButton.Shadow>
 					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"

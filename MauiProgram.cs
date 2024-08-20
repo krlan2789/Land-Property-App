@@ -21,6 +21,7 @@ namespace Land_Property_App
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
+                .UseMauiMaps()
                 .ConfigureEssentials(essentials =>
                 {
                     essentials.UseVersionTracking();
@@ -29,9 +30,15 @@ namespace Land_Property_App
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
             builder.Services.AddSingleton<DatabaseContext>();
             builder.Services.AddSingleton<HomeViewModel>();
             builder.Services.AddSingleton<HomePage>();
+            //builder.Services.AddSingleton<ISharedService, SharedService>();
+            
+            builder.Services.AddTransient<MapsViewModel>();
+            builder.Services.AddTransient<DetailsViewModel>();
+            builder.Services.AddTransient<DetailsSpecViewModel>();
 
             return builder.Build();
         }

@@ -139,6 +139,9 @@
   <data name="MoreDetailsButtonLabel" xml:space="preserve">
     <value>Rincian</value>
   </data>
+  <data name="SelectLocationButtonLabel" xml:space="preserve">
+    <value>Pilih Lokasi</value>
+  </data>
 
   <data name="PropertySpecTitleLabel" xml:space="preserve">
     <value>Spesifikasi Properti</value>

@@ -1,11 +1,13 @@
+using AndroidX.Lifecycle;
 using Land_Property_App.Animators;
 using Land_Property_App.Resources.Strings;
 using Land_Property_App.ViewModels;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Land_Property_App.Views;
 
-public partial class HomePage : ContentPage
+public partial class HomePage : ContentPage, INotifyPropertyChanged
 {
     private HomeViewModel VM => (HomeViewModel)BindingContext;
 
@@ -14,6 +16,8 @@ public partial class HomePage : ContentPage
         InitializeComponent();
 
         viewModel.CurrentTag = viewModel.Tags[0] ?? AppResources.TagNewLabel;
+        viewModel.OnLocationSelect = OnLocationSelect;
+        viewModel.GetLastLocation();
         viewModel.Update(viewModel.CurrentTag);
         BindingContext = viewModel;
 
@@ -39,7 +43,7 @@ public partial class HomePage : ContentPage
         ColView.Scale = 5;
     }
 
-    private void PlayAnimationOnLoaded(Object? sender, EventArgs? e)
+    private void PlayAnimationOnLoaded(object? sender, EventArgs? e)
     {
         Task.Delay(250);
 
@@ -68,5 +72,12 @@ public partial class HomePage : ContentPage
             VM.Update((string)rb.Value);
 
         }
+    }
+    
+    public void OnLocationSelect(object source, Placemark placemark)
+    {
+        Debug.WriteLine("Location: {0}", placemark.ToString());
+        LocationValue.Text = placemark.SubAdminArea;
+        VM.Update("" + VM.CurrentTag);
     }
 }

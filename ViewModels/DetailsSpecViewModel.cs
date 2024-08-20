@@ -10,8 +10,6 @@ namespace Land_Property_App.ViewModels
     {
         public Property? SelectedProperty { get; set; }
 
-        public ICommand OnCloseCommand => new Command(() => Application.Current?.MainPage?.Navigation.PopAsync(true));
-
         public DetailsSpecViewModel(DatabaseContext context, Property property)
         {
             _context = context;

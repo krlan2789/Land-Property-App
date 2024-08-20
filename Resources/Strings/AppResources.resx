@@ -158,6 +158,9 @@
   <data name="MoreDetailsButtonLabel" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="SelectLocationButtonLabel" xml:space="preserve">
+    <value>Select Location</value>
+  </data>
   
   <data name="PropertySpecTitleLabel" xml:space="preserve">
     <value>Property Specifications</value>

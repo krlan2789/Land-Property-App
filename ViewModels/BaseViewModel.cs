@@ -9,6 +9,8 @@ namespace Land_Property_App.ViewModels
     {
         protected DatabaseContext _context = new();
 
+        public ICommand OnCloseCommand => new Command(() => Application.Current?.MainPage?.Navigation.PopAsync(true));
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand OpenUrl => new Command<string>(async (url) => await Launcher.OpenAsync(url));

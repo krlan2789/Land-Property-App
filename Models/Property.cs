@@ -1,6 +1,7 @@
 ﻿using Land_Property_App.Resources.Strings;
 using SQLite;
 using System.Numerics;
+using System.Windows.Input;
 
 namespace Land_Property_App.Models
 {
@@ -46,6 +47,7 @@ namespace Land_Property_App.Models
             AdvertisementType.RENT => AppResources.TagRentLabel,
             _ => AppResources.TagSaleLabel,
         };
+        public string PriceUnit => $"{(AdsType == AdvertisementType.RENT ? "/year" : "")}";
         public string WhatsAppLink => $"https://api.whatsapp.com/send?phone={PhoneNumber}";
         public string DefaultImage => Images?.Count > 0 ? Images[0] : "";
         public IList<PropertySpecItem> PropertySpecs
@@ -87,5 +89,9 @@ namespace Land_Property_App.Models
                 return specs;
             }
         }
+        public ICommand PhoneCall => new Command(() => {
+            if (PhoneDialer.Default.IsSupported)
+                PhoneDialer.Default.Open(PhoneNumber);
+        });
     }
 }

@@ -63,7 +63,7 @@
 				</Border>
 
 				<Grid Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
-					<Button x:Name="BuyBtn" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+					<Button x:Name="BuyBtn" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" Command="{Binding SelectedProperty.PhoneCall}" />
 					<HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="12,0,16,0" Spacing="4" BackgroundColor="Transparent">
 						<Image Source="phone_solid.png" WidthRequest="16" Aspect="AspectFit">
 							<Image.Behaviors>
@@ -80,8 +80,8 @@
 			</Grid>
 		</Grid>
 
-		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Margin="12" >
-			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="8">
+		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Padding="0" Margin="12" >
+			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="4">
 				<ImageButton.Shadow>
 					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
 					Offset="4,4"

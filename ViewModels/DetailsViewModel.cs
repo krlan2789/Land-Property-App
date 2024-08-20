@@ -13,8 +13,6 @@ namespace Land_Property_App.ViewModels
         public List<string>? PropertyImages { get; set; }
         public int MoreItems { get; set; }
 
-        public ICommand OnCloseCommand => new Command(() => Application.Current?.MainPage?.Navigation.PopAsync(true));
-
         public ICommand OnDetailsSpecCommand => new Command(() =>
         {
             Debug.Print("Address: " + SelectedProperty?.Address);

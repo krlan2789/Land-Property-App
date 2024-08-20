@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:labels="clr-namespace:Land_Property_App.Resources.Strings"
+	xmlns:Models="clr-namespace:Land_Property_App.Models"
+	xmlns:Maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+	xmlns:Sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:vm="clr-namespace:Land_Property_App.ViewModels"
+	x:Class="Land_Property_App.Views.MapsPage"
+	x:DataType="vm:MapsViewModel"
+	NavigationPage.HasNavigationBar="False">
+	<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+		<Maps:Map x:Name="MapView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="True">
+			<Maps:Map.GestureRecognizers>
+				<PinchGestureRecognizer PinchUpdated="OnMapPinchUpdated" />
+			</Maps:Map.GestureRecognizers>
+		</Maps:Map>
+
+		<!--<Border x:Name="SelectLocationButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="48" Padding="0" Margin="12" >
+			<Button Text="{x:Static labels:AppResources.SelectLocationButtonLabel}" ImageSource="arrow_right.png" FlowDirection="RightToLeft" Command="{Binding OnCloseCommand}" Padding="8">
+				<Button.Shadow>
+					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
+					Offset="4,4"
+					Radius="16"
+					Opacity="0.32" />
+				</Button.Shadow>
+			</Button>
+		</Border>-->
+
+		<Border x:Name="CenterButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="End" VerticalOptions="End" HeightRequest="48" WidthRequest="48" Padding="0" Margin="0,0,12,80" >
+			<ImageButton Source="target_lock.png" Clicked="OnCenterButtonClicked" Padding="4">
+				<ImageButton.Shadow>
+					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
+					Offset="4,4"
+					Radius="16"
+					Opacity="0.32" />
+				</ImageButton.Shadow>
+			</ImageButton>
+		</Border>
+
+		<Grid x:Name="SelectButton" BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="12">
+			<Button x:Name="BuyBtn" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" Command="{Binding OnSelectCommand}" />
+			<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand" HeightRequest="48" Padding="8" Spacing="4" BackgroundColor="Transparent">
+				<Label Text="{x:Static labels:AppResources.SelectLocationButtonLabel}" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+				<Image Source="arrow_right.png" WidthRequest="24" Aspect="AspectFit">
+					<Image.Behaviors>
+						<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" />
+					</Image.Behaviors>
+				</Image>
+			</HorizontalStackLayout>
+		</Grid>
+
+		<Image Source="map_pin.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="48" WidthRequest="48">
+			<Image.Behaviors>
+				<toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+			</Image.Behaviors>
+		</Image>
+
+		<Border x:Name="FloatingBackButton" BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 32" StrokeThickness="0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="48" WidthRequest="48" Padding="0" Margin="12" >
+			<ImageButton Source="arrow_back.png" Command="{Binding OnCloseCommand}" Padding="4">
+				<ImageButton.Shadow>
+					<Shadow Brush="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDarkText}}"
+					Offset="4,4"
+					Radius="16"
+					Opacity="0.32" />
+				</ImageButton.Shadow>
+			</ImageButton>
+		</Border>
+	</Grid>
+</ContentPage>
