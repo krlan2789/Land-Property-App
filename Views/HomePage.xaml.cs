@@ -1,4 +1,3 @@
-using AndroidX.Lifecycle;
 using Land_Property_App.Animators;
 using Land_Property_App.Resources.Strings;
 using Land_Property_App.ViewModels;
@@ -70,7 +69,6 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
             Trace.WriteLine($"{rb.Value}::{args.Value}");
 
             VM.Update((string)rb.Value);
-
         }
     }
     

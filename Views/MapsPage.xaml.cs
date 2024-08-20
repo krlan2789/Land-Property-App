@@ -1,6 +1,5 @@
 using Land_Property_App.Database;
 using Land_Property_App.ViewModels;
-using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using System.Diagnostics;
 
@@ -18,13 +17,15 @@ public partial class MapsPage : ContentPage
 	{
 		InitializeComponent();
 
-		var viewModel = new MapsViewModel();
-        viewModel.OnLocationSelect = (object sender, Placemark placemark) =>
+        MapsViewModel viewModel = new()
         {
-            OnLocationSelect?.Invoke(sender, placemark);
+            OnLocationSelect = (object sender, Placemark placemark) =>
+            {
+                OnLocationSelect?.Invoke(sender, placemark);
+            },
+            OnStopListening = OnStopListening
         };
-        viewModel.OnStopListening = OnStopListening;
-		BindingContext = viewModel;
+        BindingContext = viewModel;
 
         //MapView.IsZoomEnabled = false;
 
@@ -96,7 +97,7 @@ public partial class MapsPage : ContentPage
 
     public static async Task CheckMock()
     {
-        GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium);
+        GeolocationRequest request = new(GeolocationAccuracy.Medium);
         Location? location = await Geolocation.Default.GetLocationAsync(request);
 
         if (location != null && location.IsFromMockProvider)

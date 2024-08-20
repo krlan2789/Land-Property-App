@@ -2,7 +2,6 @@
 using Land_Property_App.Models;
 using Land_Property_App.Resources.Strings;
 using Land_Property_App.Views;
-using Microsoft.Maui.Devices.Sensors;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -23,7 +22,7 @@ namespace Land_Property_App.ViewModels
         public required ObservableCollection<Property> Properties { get; set; }
 
         public Property? SelectedProperty { get; set; }
-        public Placemark? placemark { get; set; }
+        public Placemark? Placemark { get; set; }
 
 
         public Action<object, Placemark>? OnLocationSelect;
@@ -41,7 +40,7 @@ namespace Land_Property_App.ViewModels
         {
             var mapsPage = new MapsPage(_context);
             mapsPage.OnLocationSelect += (object sender, Placemark placemark) => {
-                this.placemark = placemark;
+                this.Placemark = placemark;
                 OnLocationSelect?.Invoke(sender, placemark);
             };
             Application.Current?.MainPage?.Navigation.PushAsync(mapsPage);
@@ -59,12 +58,12 @@ namespace Land_Property_App.ViewModels
             if (location != null)
             {
                 IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(location.Latitude, location.Longitude);
-                placemark = placemarks?.FirstOrDefault();
+                Placemark = placemarks?.FirstOrDefault();
             }
 
-            if (placemark == null) 
+            if (Placemark == null) 
             {
-                placemark = new Placemark()
+                Placemark = new Placemark()
                 {
                     CountryName = "Indonesia",
                     AdminArea = "DKI Jakarta",
@@ -72,8 +71,8 @@ namespace Land_Property_App.ViewModels
                 };
             }
 
-            CurrentLocation = placemark.SubAdminArea;
-            OnLocationSelect?.Invoke(this, placemark);
+            CurrentLocation = Placemark.SubAdminArea;
+            OnLocationSelect?.Invoke(this, Placemark);
         }
 
         public void Update(string name)
@@ -98,7 +97,7 @@ namespace Land_Property_App.ViewModels
 
         public bool IsCurrentLocation(string address)
         {
-            if (placemark == null) return true;
+            if (Placemark == null) return true;
 
             foreach (string loc in address.Replace(", ", ",").Split(','))
             {
@@ -113,11 +112,11 @@ namespace Land_Property_App.ViewModels
                 area = area.Replace("kec ", "");
                 area = area.Replace("kel ", "");
 
-                bool status = placemark.CountryCode.Contains(area, StringComparison.CurrentCultureIgnoreCase);
-                status = status || placemark.AdminArea.Contains(area, StringComparison.CurrentCultureIgnoreCase);
-                status = status || placemark.SubAdminArea.Contains(area, StringComparison.CurrentCultureIgnoreCase);
-                status = status || placemark.Locality.Contains(area, StringComparison.CurrentCultureIgnoreCase);
-                status = status || placemark.SubLocality.Contains(area, StringComparison.CurrentCultureIgnoreCase);
+                bool status = Placemark.CountryCode.Contains(area, StringComparison.CurrentCultureIgnoreCase);
+                status = status || Placemark.AdminArea.Contains(area, StringComparison.CurrentCultureIgnoreCase);
+                status = status || Placemark.SubAdminArea.Contains(area, StringComparison.CurrentCultureIgnoreCase);
+                status = status || Placemark.Locality.Contains(area, StringComparison.CurrentCultureIgnoreCase);
+                status = status || Placemark.SubLocality.Contains(area, StringComparison.CurrentCultureIgnoreCase);
 
                 if (status) return true;
             }
