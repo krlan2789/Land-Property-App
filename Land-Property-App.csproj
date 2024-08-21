@@ -45,6 +45,8 @@
 	  <ApplicationTitle>LandEstate</ApplicationTitle>
 	  <ApplicationId>com.lan.destate</ApplicationId>
 	  <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+	  <DebugSymbols>False</DebugSymbols>
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
@@ -57,7 +59,13 @@
 	  <ApplicationTitle>LandEstate</ApplicationTitle>
 	  <ApplicationId>com.lan.destate</ApplicationId>
 	  <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
-	  <DebugSymbols>True</DebugSymbols>
+	  <DebugSymbols>False</DebugSymbols>
+    
+    <!--<AndroidLinkResources>True</AndroidLinkResources>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <UseInterpreter>True</UseInterpreter>
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>-->
 	</PropertyGroup>
   
   <!--<PropertyGroup>
